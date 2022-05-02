@@ -1,7 +1,6 @@
 package dan.rojas.epam.file;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -14,10 +13,8 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 import java.util.stream.Collectors;
 
-
+@Slf4j
 public class FileScannerRecursiveAction extends RecursiveTask<BigInteger> {
-
-  private final static Logger logger = LoggerFactory.getLogger(FileScannerRecursiveAction.class);
 
   private final File file;
   private final boolean printPath;
@@ -57,10 +54,10 @@ public class FileScannerRecursiveAction extends RecursiveTask<BigInteger> {
   private void print(final File file, final boolean isDirectory) {
     if (printPath) {
       if (isDirectory) {
-        logger.debug("File " + file.getName() + " is directory.");
+        log.debug("File " + file.getName() + " is directory.");
       } else {
-        logger.debug("File " + file.getName() + " is single file.");
-        logger.info(file.getAbsolutePath());
+        log.debug("File " + file.getName() + " is single file.");
+        log.info(file.getAbsolutePath());
       }
     }
   }
